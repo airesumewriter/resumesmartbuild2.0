@@ -139,7 +139,23 @@
   <section class="hero">
     <h1>Create Your Resume and Find Your Next Job</h1>
     <p>Utilize AI-driven tools to build a standout resume, write cover letters, and explore job opportunities.</p>
-    <button class="btn-primary">Get Started</button>
+    <!-- Get Started Modal Trigger -->
+<button class="btn-primary" id="getStartedModalBtn">Get Started</button>
+
+<!-- Modal HTML -->
+<div id="modal" class="modal-overlay">
+  <div class="modal-box">
+    <h2>Get Started</h2>
+    <p>Enter your info to begin building your resume:</p>
+    <form id="modalForm" action="/api/submit" method="POST">
+      <input type="text" name="firstName" placeholder="First Name" required><br>
+      <input type="text" name="lastName" placeholder="Last Name" required><br>
+      <input type="email" name="email" placeholder="Email Address" required><br>
+      <button type="submit">Submit</button>
+    </form>
+    <button class="modal-close" type="button">Close</button>
+  </div>
+</div>
     
 <form class="signup-form" action="/api/submit" method="POST">
   <input type="text" name="firstName" placeholder="First Name" required>
