@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     secure: false,
     auth: {
       user: 'info@resumesmartbuild.com',
-      pass: 'YOUR_APP_PASSWORD' // from Namecheap's private email app password
+      pass: 'Kenzoann84!!' // from Namecheap's private email app password
     }
   });
 
