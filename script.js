@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Enhanced JS loaded');
 
-  // === VALIDATE & SUBMIT FORM FUNCTION ===
   const handleFormSubmit = (form) => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -43,31 +42,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // === ATTACH TO ALL FORMS ===
   document.querySelectorAll('form').forEach(handleFormSubmit);
 
-  // === MODAL POPUP HANDLER ===
+  // Modal Popup
   const modalBtn = document.getElementById('getStartedModalBtn');
   const modal = document.getElementById('modal');
   const closeModalBtn = document.querySelector('.modal-close');
 
   if (modalBtn && modal && closeModalBtn) {
-    modalBtn.addEventListener('click', () => {
-      modal.style.display = 'flex';
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
+    modalBtn.addEventListener('click', () => modal.style.display = 'flex');
+    closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
     window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
+      if (e.target === modal) modal.style.display = 'none';
     });
   }
 
-  // === SCROLL REVEAL ANIMATION ===
+  // Scroll Reveal
   const revealElements = document.querySelectorAll('.tool-card, .hero, .signup-form');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -86,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // === THANK YOU PAGE: DELAYED PDF DOWNLOAD ===
+  // Thank-You Page PDF Countdown
   if (window.location.pathname.includes('thank-you.html')) {
     const downloadLink = document.querySelector('a[download]');
     if (downloadLink) {
