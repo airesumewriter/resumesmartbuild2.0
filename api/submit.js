@@ -1,7 +1,6 @@
 import { IncomingForm } from 'formidable';
 import nodemailer from 'nodemailer';
 
-// Disable body parsing (Vercel optimization)
 export const config = {
   api: {
     bodyParser: false,
@@ -33,7 +32,7 @@ export default async function handler(req, res) {
       secure: false,
       auth: {
         user: 'info@resumesmartbuild.com',
-        pass: 'Kenzoann84!!', // 🔒 Consider switching to an App Password
+        pass: 'kvaj-okad-goqw-oeka', // Replace with App Password for security
       },
     });
 
