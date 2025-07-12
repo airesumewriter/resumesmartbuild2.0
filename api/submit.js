@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).send('Method Not Allowed');
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   const { firstName, lastName, email } = req.body;
@@ -11,33 +11,26 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
+  const transporter = nodemailer.createTransport({
+    host: 'mail.privateemail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: 'info@resumesmartbuild.com',
+      pass: 'your-app-password-here' // 💡 Use app password from Namecheap
+    }
+  });
+
   try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT),
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    });
-
     await transporter.sendMail({
-      from: `"${process.env.SENDER_NAME}" <${process.env.SMTP_USER}>`,
+      from: 'ResumeSmartBuild <info@resumesmartbuild.com>',
       to: email,
-      subject: '🎉 Your Resume Toolkit is Here!',
-      html: `
-        <p>Hi ${firstName},</p>
-        <p>Thanks for signing up at <strong>ResumeSmartBuild</strong>!</p>
-        <p>✅ Download Your Free Resume Checklist:<br>
-        <a href="https://resumesmartbuild.com/files/resume-checklist.pdf">Click here to download</a></p>
-        <p>🔥 Want to try our <strong>AI Resume Builder</strong>?<br>
-        <a href="https://resumesmartbuild.com/">Start building now</a></p>
-        <p>— The ResumeSmartBuild Team<br>info@resumesmartbuild.com</p>
-      `
+      subject: 'Thanks for Signing Up!',
+      text: `Hi ${firstName}, thanks for signing up! Download your resume checklist here.`,
+      html: `<p>Hi ${firstName},</p><p>Thanks for signing up!</p><a href="/files/resume-template.pdf">Download your checklist</a>`
     });
 
-    return res.redirect(302, '/thank-you.html');
+    return res.status(200).json({ message: 'Email sent' });
   } catch (error) {
     console.error('Email error:', error);
     return res.status(500).json({ message: 'Email failed to send' });
