@@ -2,61 +2,176 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resume Smart Build - AI Resume Builder & Tools</title>
-  <meta name="description" content="Build your resume with smart tools, pass ATS scans, and access free templates. ResumeSmartBuild makes job hunting easier with AI." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeSmart - AI Job Tools</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #333;
+      padding: 40px 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #1e3a8a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .signup-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .signup-form input {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .signup-form button {
+      background: #2563eb;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .tools-section {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .tool-card h3 {
+      color: #1e3a8a;
+      margin-bottom: 10px;
+    }
+
+    .kenji {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+  </style>
 </head>
 <body>
-
   <header class="header">
-    <div class="container">
-      <h1 class="logo">ResumeSmartBuild</h1>
-      <nav class="nav">
-        <a href="#">Home</a>
-        <a href="#tools">Tools</a>
-        <a href="#signup">Sign Up</a>
-      </nav>
-    </div>
+    <div class="logo">ResumeSmart</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Resume Tips</a>
+      <a href="#">Cover Letter</a>
+      <a href="#">Job Search</a>
+      <a href="#">Resources</a>
+    </nav>
   </header>
 
   <section class="hero">
-    <div class="container">
-      <h2>Smart Resume Builder with AI</h2>
-      <p>Create job-winning resumes that pass ATS filters and impress recruiters.</p>
-      <a href="#signup" class="cta-button">Get Started</a>
+    <h1>Create Your Resume and Find Your Next Job</h1>
+    <p>Utilize AI-driven tools to build a standout resume, write cover letters, and explore job opportunities.</p>
+    <button class="btn-primary">Get Started</button>
+
+    <form class="signup-form" action="https://formspree.io/f/xgvygjjp" method="POST">
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="text" name="_gotcha" style="display:none">
+      <input type="hidden" name="_next" value="thank-you.html">
+      <button type="submit">Sign Up</button>
+    </form>
+  </section>
+
+  <section class="tools-section">
+    <div class="tool-card">
+      <h3>AI Resume Builder</h3>
+      <p>Develop a professional resume tailored to your background.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Cover Letter Generator</h3>
+      <p>Generate customized cover letters that capture attention.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Job Matcher</h3>
+      <p>Find jobs that match your experience and preferences.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Career Advice</h3>
+      <p>Receive guidance and insights for your job hunt.</p>
     </div>
   </section>
 
-  <section class="tools" id="tools">
-    <div class="container">
-      <h2>Smart Tools</h2>
-      <ul class="tool-list">
-        <li><strong>ATS Scanner:</strong> Check if your resume passes applicant tracking systems.</li>
-        <li><strong>Resume Checklist:</strong> Optimize your content for job relevance.</li>
-        <li><strong>AI Rebuilder:</strong> Improve weak resumes automatically with AI.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="signup" id="signup">
-    <div class="container">
-      <h2>Download Your Resume</h2>
-      <p>Enter your details to access our free resume builder and download templates.</p>
-      <form action="https://formspree.io/f/xgvygjjp" method="POST">
-        <input type="text" name="firstName" placeholder="First Name" required />
-        <input type="text" name="lastName" placeholder="Last Name" required />
-        <input type="email" name="email" placeholder="Email Address" required />
-        <input type="text" name="_gotcha" style="display:none">
-        <input type="hidden" name="_next" value="thank-you.html" />
-        <button type="submit">Sign Up & Get Resume</button>
-      </form>
-    </div>
-  </section>
-
+  <!-- Kenji Chatbot -->
   <script>
-    window.chatbaseConfig = { chatbotId: "0n3OR_TmBfnFfKXUGd07Z" };
+    window.chatbaseConfig = {
+      chatbotId: "0n3OR_TmBfnFfKXUGd07Z"
+    }
   </script>
-  <script src="https://www.chatbase.co/embed.min.js" defer></script>
+  <script src="https://www.chatbase.co/embed.min.js" id="kenjiChatbot" defer></script>
 </body>
 </html>
