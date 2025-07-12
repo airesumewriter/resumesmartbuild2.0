@@ -5,124 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ResumeSmartBuild</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: #f8fafc;
-      color: #333;
-      padding: 40px 20px;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #1e3a8a;
-    }
-
-    nav a {
-      margin: 0 15px;
-      color: #1e3a8a;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .hero {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin-bottom: 30px;
-    }
-
-    .btn-primary {
-      background: #2563eb;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin-bottom: 30px;
-    }
-
-    .signup-form {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 40px;
-    }
-
-    .signup-form input {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    .signup-form button {
-      background: #2563eb;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .tools-section {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .tool-card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .tool-card h3 {
-      color: #1e3a8a;
-      margin-bottom: 10px;
-    }
-
-    .kenji {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-    }
-  </style>
-</head>
-<body>
-  <head>
-  <title>ResumeSmartBuild - AI Job Tools</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="header">
@@ -139,32 +22,31 @@
   <section class="hero">
     <h1>Create Your Resume and Find Your Next Job</h1>
     <p>Utilize AI-driven tools to build a standout resume, write cover letters, and explore job opportunities.</p>
-    <!-- Get Started Modal Trigger -->
-<button class="btn-primary" id="getStartedModalBtn">Get Started</button>
 
-<!-- Modal HTML -->
-<div id="modal" class="modal-overlay">
-  <div class="modal-box">
-    <h2>Get Started</h2>
-    <p>Enter your info to begin building your resume:</p>
-    <form id="modalForm" action="/api/submit" method="POST">
-      <input type="text" name="firstName" placeholder="First Name" required><br>
-      <input type="text" name="lastName" placeholder="Last Name" required><br>
-      <input type="email" name="email" placeholder="Email Address" required><br>
-      <button type="submit">Submit</button>
+    <button class="btn-primary" id="getStartedModalBtn">Get Started</button>
+
+    <!-- Modal -->
+    <div id="modal" class="modal-overlay">
+      <div class="modal-box">
+        <h2>Get Started</h2>
+        <p>Enter your info to begin building your resume:</p>
+        <form id="modalForm" action="/api/submit" method="POST">
+          <input type="text" name="firstName" placeholder="First Name" required><br>
+          <input type="text" name="lastName" placeholder="Last Name" required><br>
+          <input type="email" name="email" placeholder="Email Address" required><br>
+          <button type="submit">Submit</button>
+        </form>
+        <button class="modal-close" type="button">Close</button>
+      </div>
+    </div>
+
+    <!-- Static Signup Form -->
+    <form class="signup-form" action="/api/submit" method="POST">
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <button type="submit">Sign Up</button>
     </form>
-    <button class="modal-close" type="button">Close</button>
-  </div>
-</div>
-    
-<form class="signup-form" action="/api/submit" method="POST">
-  <input type="text" name="firstName" placeholder="First Name" required>
-  <input type="text" name="lastName" placeholder="Last Name" required>
-  <input type="email" name="email" placeholder="Email Address" required>
-  <button type="submit">Sign Up</button>
-</form>
-
-
   </section>
 
   <section class="tools-section">
@@ -188,12 +70,10 @@
 
   <!-- Kenji Chatbot -->
   <script>
-    window.chatbaseConfig = {
-      chatbotId: "0n3OR_TmBfnFfKXUGd07Z"
-    }
+    window.chatbaseConfig = { chatbotId: "0n3OR_TmBfnFfKXUGd07Z" };
   </script>
   <script src="https://www.chatbase.co/embed.min.js" id="kenjiChatbot" defer></script>
-  <!-- Enhanced JS -->
-<script src="script.js" defer></script>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
