@@ -1,9 +1,9 @@
-import { IncomingForm } from 'formidable';
-import nodemailer from 'nodemailer';
+const formidable = require('formidable');
+const nodemailer = require('nodemailer');
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: false, // Required for formidable
   },
 };
 
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const form = new IncomingForm();
+  const form = new formidable.IncomingForm();
 
   form.parse(req, async (err, fields) => {
     if (err) {
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       secure: false,
       auth: {
         user: 'info@resumesmartbuild.com',
-        pass: 'kvaj-okad-goqw-oeka', // Replace with App Password for security
+        pass: 'kvaj-okad-goqw-oeka', // ← Use your real password for now
       },
     });
 
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
         subject: 'Thanks for Signing Up!',
         html: `
           <p>Hi ${firstName},</p>
-          <p>Thanks for signing up! Here's your <a href="https://resumesmartbuild.com/files/resume-template.pdf" target="_blank">Resume Checklist</a>.</p>
+          <p>Thanks for signing up! Here's your <a href="https://resumesmartbuild.com/files/resume-template.pdf">Resume Checklist</a>.</p>
         `,
       });
 
