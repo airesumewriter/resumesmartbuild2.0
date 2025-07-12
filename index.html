@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Smart Build - AI Resume Builder & Tools</title>
+  <meta name="description" content="Build your resume with smart tools, pass ATS scans, and access free templates. ResumeSmartBuild makes job hunting easier with AI." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">ResumeSmartBuild</h1>
+      <nav class="nav">
+        <a href="#">Home</a>
+        <a href="#tools">Tools</a>
+        <a href="#signup">Sign Up</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Smart Resume Builder with AI</h2>
+      <p>Create job-winning resumes that pass ATS filters and impress recruiters.</p>
+      <a href="#signup" class="cta-button">Get Started</a>
+    </div>
+  </section>
+
+  <section class="tools" id="tools">
+    <div class="container">
+      <h2>Smart Tools</h2>
+      <ul class="tool-list">
+        <li><strong>ATS Scanner:</strong> Check if your resume passes applicant tracking systems.</li>
+        <li><strong>Resume Checklist:</strong> Optimize your content for job relevance.</li>
+        <li><strong>AI Rebuilder:</strong> Improve weak resumes automatically with AI.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="signup" id="signup">
+    <div class="container">
+      <h2>Download Your Resume</h2>
+      <p>Enter your details to access our free resume builder and download templates.</p>
+      <form action="https://formspree.io/f/xgvygjjp" method="POST">
+        <input type="text" name="firstName" placeholder="First Name" required />
+        <input type="text" name="lastName" placeholder="Last Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_next" value="thank-you.html" />
+        <button type="submit">Sign Up & Get Resume</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    window.chatbaseConfig = { chatbotId: "0n3OR_TmBfnFfKXUGd07Z" };
+  </script>
+  <script src="https://www.chatbase.co/embed.min.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f7f9fc;
+  color: #333;
+}
+.header {
+  background-color: #1e90ff;
+  padding: 20px;
+  color: white;
+}
+.header .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+}
+.cta-button {
+  background: #1e90ff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.tools {
+  padding: 40px 20px;
+}
+.signup {
+  background: #fff;
+  padding: 40px 20px;
+}
+form input, form button {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+form button {
+  background-color: #1e90ff;
+  color: white;
+  font-weight: bold;
+}
