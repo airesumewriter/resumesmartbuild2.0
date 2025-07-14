@@ -1,6 +1,6 @@
-// Firebase SDK imports import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"; import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+// Firebase SDK imports import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js"; import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-// Your Firebase Project Config const firebaseConfig = { apiKey: "YOUR_API_KEY", authDomain: "YOUR_PROJECT_ID.firebaseapp.com", projectId: "YOUR_PROJECT_ID", appId: "YOUR_APP_ID" };
+// Your Firebase Project Config const firebaseConfig = { apiKey: "AIzaSyCpLscgzlbaIz6vwLZxrNg8s0IUpS-ls3s", authDomain: "resumesmartbuild.firebaseapp.com", projectId: "resumesmartbuild", storageBucket: "resumesmartbuild.firebasestorage.app", messagingSenderId: "190620294122", appId: "1:190620294122:web:9a93a5763ddcf3e1c63093", measurementId: "G-HSTPGPKLPE" };
 
 // Initialize Firebase const app = initializeApp(firebaseConfig); const auth = getAuth(app);
 
