@@ -130,3 +130,83 @@ body { font-family: 'Inter', sans-serif; background: #f9fbfd; color: #333; overf
   font-size: 0.75rem;
   border-radius: 12px;
 }
+.template-gallery {
+  padding: 40px 20px;
+  background: #f9fbfd;
+}
+
+.template-gallery h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.template-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.template-card:hover {
+  transform: translateY(-5px);
+}
+
+.template-header h4 {
+  margin-bottom: 10px;
+}
+
+.free-badge,
+.premium-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: white;
+}
+
+.free-badge {
+  background: #28a745;
+}
+
+.premium-badge {
+  background: #f39c12;
+}
+
+.template-actions {
+  margin-top: 15px;
+}
+
+.template-actions button,
+.template-actions a {
+  margin: 5px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.preview-btn {
+  background: #007bff;
+  color: white;
+}
+
+.download-btn {
+  background: #17a2b8;
+  color: white;
+}
+
+.locked {
+  background: #999;
+  color: white;
+  cursor: pointer;
+}
