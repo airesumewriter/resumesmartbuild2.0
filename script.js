@@ -1,114 +1,34 @@
-// Sidebar toggle
-const menuBtn = document.getElementById('menuBtn');
-const sidebarNav = document.getElementById('sidebarNav');
-menuBtn.addEventListener('click', () => {
-  sidebarNav.classList.toggle('show');
-});
+// Firebase SDK imports import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"; import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// Modal open/close
-const modal = document.getElementById("getStartedModal");
-const openModalBtn = document.getElementById("getStartedModalBtn");
-const closeModalBtn = document.getElementById("closeModal");
+// Your Firebase Project Config const firebaseConfig = { apiKey: "YOUR_API_KEY", authDomain: "YOUR_PROJECT_ID.firebaseapp.com", projectId: "YOUR_PROJECT_ID", appId: "YOUR_APP_ID" };
 
-openModalBtn.addEventListener("click", () => {
-  modal.style.display = "flex";
-});
-closeModalBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-window.addEventListener("click", (event) => {
-  if (event.target === modal) modal.style.display = "none";
-});
+// Initialize Firebase const app = initializeApp(firebaseConfig); const auth = getAuth(app);
 
-// ScrollReveal animation
-ScrollReveal().reveal('.tool-card, .article-card', {
-  delay: 200,
-  distance: '30px',
-  origin: 'bottom',
-  interval: 100,
-  duration: 600,
-});
+// Sidebar toggle const menuBtn = document.getElementById('menuBtn'); const sidebarNav = document.getElementById('sidebarNav'); menuBtn.addEventListener('click', () => { sidebarNav.classList.toggle('show'); });
 
-// Collapse toggle logic
-document.querySelectorAll(".toggle-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const targetId = btn.getAttribute("data-target");
-    const content = document.getElementById(targetId);
-    content.style.display = content.style.display === "block" ? "none" : "block";
-  });
-});
+// Modal open/close for Get Started const modal = document.getElementById("getStartedModal"); const openModalBtn = document.getElementById("getStartedModalBtn"); const closeModalBtn = document.getElementById("closeModal");
 
-// ATS Scanner logic (simulate for now)
-document.getElementById("atsForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+openModalBtn.addEventListener("click", () => { modal.style.display = "flex"; }); closeModalBtn.addEventListener("click", () => { modal.style.display = "none"; }); window.addEventListener("click", (event) => { if (event.target === modal) modal.style.display = "none"; });
 
-  const fileInput = document.getElementById("resumeFile");
-  const resultDiv = document.getElementById("atsResult");
+// ScrollReveal animation ScrollReveal().reveal('.tool-card, .article-card', { delay: 200, distance: '30px', origin: 'bottom', interval: 100, duration: 600, });
 
-  if (!fileInput.files.length) {
-    resultDiv.innerHTML = "⚠️ Please upload a resume first.";
-    return;
-  }
+// Collapse toggle logic document.querySelectorAll(".toggle-btn").forEach((btn) => { btn.addEventListener("click", () => { const targetId = btn.getAttribute("data-target"); const content = document.getElementById(targetId); content.style.display = content.style.display === "block" ? "none" : "block"; }); });
 
-  // Simulate scanning
-  resultDiv.innerHTML = "🔍 Scanning your resume for ATS compatibility...";
-  
-  setTimeout(() => {
-    resultDiv.innerHTML = `
-      ✅ Your resume is 78% ATS-compatible.<br>
-      📌 Tip: Use more job-related keywords.<br>
-      💡 Consider reformatting headers for better parsing.
-    `;
-  }, 2000);
-});
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  appId: "YOUR_APP_ID",
-};
+// ATS Scanner logic (simulate for now) document.getElementById("atsForm").addEventListener("submit", function (e) { e.preventDefault();
 
-// Modal logic
-const modal = document.getElementById("loginModal");
-const closeModal = document.querySelector(".close");
+const fileInput = document.getElementById("resumeFile"); const resultDiv = document.getElementById("atsResult");
 
-document.querySelectorAll(".login-btn").forEach(btn => {
-  btn.addEventListener("click", () => modal.style.display = "block");
-});
-closeModal.onclick = () => (modal.style.display = "none");
-window.onclick = e => {
-  if (e.target == modal) modal.style.display = "none";
-};
+if (!fileInput.files.length) { resultDiv.innerHTML = "⚠️ Please upload a resume first."; return; }
 
-// Firebase logic
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+// Simulate scanning resultDiv.innerHTML = "🔍 Scanning your resume for ATS compatibility...";
 
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  appId: "YOUR_APP_ID"
-};
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+setTimeout(() => { resultDiv.innerHTML = ✅ Your resume is 78% ATS-compatible.<br> 📌 Tip: Use more job-related keywords.<br> 💡 Consider reformatting headers for better parsing.; }, 2000); });
 
-document.getElementById("emailLoginBtn").onclick = () => {
-  const email = document.getElementById("emailInput").value;
-  signInWithEmailAndPassword(auth, email, "defaultpassword")
-    .then(user => {
-      alert("Signed in successfully!");
-      modal.style.display = "none";
-    })
-    .catch(() => alert("Use Google sign-in or a valid email."));
-};
+// Modal logic for Login const loginModal = document.getElementById("loginModal"); const closeLoginModal = document.querySelector(".close");
 
-document.getElementById("googleLoginBtn").onclick = () => {
-  const provider = new GoogleAuthProvider();
-  signInWithPopup(auth, provider)
-    .then(result => {
-      alert("Welcome, " + result.user.displayName);
-      modal.style.display = "none";
-    })
-    .catch(error => console.error("Google Login Error:", error));
-};
+document.querySelectorAll(".login-btn").forEach(btn => { btn.addEventListener("click", () => loginModal.style.display = "block"); }); closeLoginModal.onclick = () => (loginModal.style.display = "none"); window.onclick = e => { if (e.target == loginModal) loginModal.style.display = "none"; };
+
+// Firebase Auth Login document.getElementById("emailLoginBtn").onclick = () => { const email = document.getElementById("emailInput").value; signInWithEmailAndPassword(auth, email, "defaultpassword") .then(user => { alert("Signed in successfully!"); loginModal.style.display = "none"; }) .catch(() => alert("Use Google sign-in or a valid email.")); };
+
+document.getElementById("googleLoginBtn").onclick = () => { const provider = new GoogleAuthProvider(); signInWithPopup(auth, provider) .then(result => { alert("Welcome, " + result.user.displayName); loginModal.style.display = "none"; }) .catch(error => console.error("Google Login Error:", error)); };
+
