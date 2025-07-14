@@ -1,35 +1,44 @@
-// server/index.js
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
-import atsScannerRouter from "./atsScanner.js";
-
-// Load environment variables
-dotenv.config();
-
-// Setup __dirname
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import 'dotenv/config';
+import { Configuration, OpenAIApi } from 'openai';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-
-// Middleware
 app.use(cors());
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "../"))); // Serve index.html and assets
+app.use(bodyParser.json());
 
-// Routes
-app.use("/api/scan", atsScannerRouter);
+const config = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY
+});
+const openai = new OpenAIApi(config);
 
-// Fallback to index.html
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+app.post('/api/ats', async (req, res) => {
+  const { resumeText, jobDescription } = req.body;
+
+  try {
+    const response = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [
+        {
+          role: 'system',
+          content: 'You are an ATS resume evaluator. Compare resumes to job descriptions and return ATS compatibility, keyword matches, and suggestions.'
+        },
+        {
+          role: 'user',
+          content: `Resume:\n${resumeText}\n\nJob Description:\n${jobDescription}`
+        }
+      ],
+      temperature: 0.5,
+      max_tokens: 500
+    });
+
+    res.json({ result: response.data.choices[0].message.content });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'OpenAI failed to respond' });
+  }
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
-});
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server running on port ${port}`));
