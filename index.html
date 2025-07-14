@@ -31,8 +31,14 @@
   </section>
 
   <section class="signup-section">
-    <h2>Get Your Free Resume Checklist</h2>
-    <iframe src="https://my.brevo.com/forms/your-form-id-here" width="100%" height="300" frameborder="0"></iframe>
+  <form class="signup-form" action="https://formspree.io/f/xgvygjjp" method="POST">
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="text" name="_gotcha" style="display:none">
+      <input type="hidden" name="_next" value="thank-you.html">
+      <button type="submit">Sign Up</button>
+    </form>
   </section>
 
   <section class="articles-preview">
