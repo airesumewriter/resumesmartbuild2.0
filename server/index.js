@@ -1,44 +1,39 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import 'dotenv/config';
-import { Configuration, OpenAIApi } from 'openai';
+import express from "express";
+import multer from "multer";
+import dotenv from "dotenv";
+import cors from "cors";
+import { analyzeResumeATS } from "./atsScanner.js";
+import fs from "fs";
+import path from "path";
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 3001;
+
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
-});
-const openai = new OpenAIApi(config);
+// File upload setup
+const upload = multer({ dest: "server/uploads/" });
 
-app.post('/api/ats', async (req, res) => {
-  const { resumeText, jobDescription } = req.body;
-
+// ATS scan route
+app.post("/api/ats-scan", upload.single("resume"), async (req, res) => {
   try {
-    const response = await openai.createChatCompletion({
-      model: 'gpt-4',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an ATS resume evaluator. Compare resumes to job descriptions and return ATS compatibility, keyword matches, and suggestions.'
-        },
-        {
-          role: 'user',
-          content: `Resume:\n${resumeText}\n\nJob Description:\n${jobDescription}`
-        }
-      ],
-      temperature: 0.5,
-      max_tokens: 500
-    });
+    const filePath = req.file.path;
+    const mimeType = req.file.mimetype;
 
-    res.json({ result: response.data.choices[0].message.content });
+    const result = await analyzeResumeATS(filePath, mimeType);
+
+    fs.unlinkSync(filePath); // Cleanup uploaded file
+
+    res.json({ success: true, result });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'OpenAI failed to respond' });
+    console.error("ATS Scan Error:", err);
+    res.status(500).json({ success: false, error: "Failed to scan resume." });
   }
 });
 
-const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
