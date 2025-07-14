@@ -46,7 +46,21 @@
 
   <!-- Tools Section -->
   <section class="tools-section" id="tools">
-    <div class="tool-card"><h3><i class="fas fa-file-alt"></i> ATS Resume Scanner</h3><p>Check if your resume can pass applicant tracking systems.</p></div>
+   <!-- ATS Scanner Toggle Link -->
+<div class="tool-card" id="atsCard">
+  <h3><i class="fas fa-robot"></i> ATS Resume Scanner</h3>
+  <p>Check if your resume can pass applicant tracking systems.</p>
+  <button class="toggle-btn" data-target="atsScanner">Open Scanner</button>
+  
+  <!-- Hidden ATS Scanner Form -->
+  <div class="scanner-content" id="atsScanner">
+    <form id="atsForm">
+      <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" required />
+      <button type="submit">Scan Resume</button>
+    </form>
+    <div class="scanner-result" id="atsResult"></div>
+  </div>
+</div>
     <div class="tool-card"><h3><i class="fas fa-magic"></i> AI Resume Builder</h3><p>Develop a professional resume tailored to your background.</p></div>
     <div class="tool-card"><h3><i class="fas fa-envelope-open-text"></i> Cover Letter Generator</h3><p>Generate customized cover letters that capture attention.</p></div>
     <div class="tool-card"><h3><i class="fas fa-briefcase"></i> Job Matcher</h3><p>Find jobs that match your experience and preferences.</p></div>
