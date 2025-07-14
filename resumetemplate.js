@@ -58,3 +58,10 @@ window.onload = () => {
     renderTemplates(null);
   }
 };
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.auth && typeof auth.onAuthStateChanged === "function") {
+    auth.onAuthStateChanged(user => renderTemplates(user));
+  } else {
+    renderTemplates(null);
+  }
+});
