@@ -28,3 +28,36 @@ ScrollReveal().reveal('.tool-card, .article-card', {
   interval: 100,
   duration: 600,
 });
+
+// Collapse toggle logic
+document.querySelectorAll(".toggle-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const targetId = btn.getAttribute("data-target");
+    const content = document.getElementById(targetId);
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  });
+});
+
+// ATS Scanner logic (simulate for now)
+document.getElementById("atsForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const fileInput = document.getElementById("resumeFile");
+  const resultDiv = document.getElementById("atsResult");
+
+  if (!fileInput.files.length) {
+    resultDiv.innerHTML = "⚠️ Please upload a resume first.";
+    return;
+  }
+
+  // Simulate scanning
+  resultDiv.innerHTML = "🔍 Scanning your resume for ATS compatibility...";
+  
+  setTimeout(() => {
+    resultDiv.innerHTML = `
+      ✅ Your resume is 78% ATS-compatible.<br>
+      📌 Tip: Use more job-related keywords.<br>
+      💡 Consider reformatting headers for better parsing.
+    `;
+  }, 2000);
+});
