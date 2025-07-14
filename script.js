@@ -67,3 +67,48 @@ const firebaseConfig = {
   projectId: "YOUR_PROJECT_ID",
   appId: "YOUR_APP_ID",
 };
+
+// Modal logic
+const modal = document.getElementById("loginModal");
+const closeModal = document.querySelector(".close");
+
+document.querySelectorAll(".login-btn").forEach(btn => {
+  btn.addEventListener("click", () => modal.style.display = "block");
+});
+closeModal.onclick = () => (modal.style.display = "none");
+window.onclick = e => {
+  if (e.target == modal) modal.style.display = "none";
+};
+
+// Firebase logic
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  appId: "YOUR_APP_ID"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+document.getElementById("emailLoginBtn").onclick = () => {
+  const email = document.getElementById("emailInput").value;
+  signInWithEmailAndPassword(auth, email, "defaultpassword")
+    .then(user => {
+      alert("Signed in successfully!");
+      modal.style.display = "none";
+    })
+    .catch(() => alert("Use Google sign-in or a valid email."));
+};
+
+document.getElementById("googleLoginBtn").onclick = () => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then(result => {
+      alert("Welcome, " + result.user.displayName);
+      modal.style.display = "none";
+    })
+    .catch(error => console.error("Google Login Error:", error));
+};
