@@ -1,51 +1,73 @@
 import { Configuration, OpenAIApi } from "openai";
 import fs from "fs";
 import pdfParse from "pdf-parse";
-import mammoth from "mammoth";
 import dotenv from "dotenv";
-
 dotenv.config();
 
-const openai = new OpenAIApi(new Configuration({ apiKey: process.env.OPENAI_API_KEY }));
+const config = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(config);
 
+/**
+ * Analyze resume file and return ATS insights
+ * @param {string} filePath - Path to uploaded resume
+ * @param {string} mimeType - File type (e.g., application/pdf)
+ */
 export async function analyzeResumeATS(filePath, mimeType) {
-  let resumeText = "";
+  try {
+    let resumeText = "";
 
-  // Extract text from file
-  if (mimeType === "application/pdf") {
-    const dataBuffer = fs.readFileSync(filePath);
-    const pdfData = await pdfParse(dataBuffer);
-    resumeText = pdfData.text;
-  } else if (
-    mimeType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  ) {
-    const docBuffer = fs.readFileSync(filePath);
-    const result = await mammoth.extractRawText({ buffer: docBuffer });
-    resumeText = result.value;
-  } else {
-    throw new Error("Unsupported file type");
-  }
+    if (mimeType === "application/pdf") {
+      const pdfBuffer = fs.readFileSync(filePath);
+      const parsed = await pdfParse(pdfBuffer);
+      resumeText = parsed.text;
+    } else if (
+      mimeType ===
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+      mimeType === "application/msword"
+    ) {
+      resumeText = "Support for Word files will be added soon.";
+    } else {
+      throw new Error("Unsupported file type");
+    }
 
-  const prompt = `
-You are an ATS (Applicant Tracking System) resume evaluator. Analyze the following resume and provide:
-1. ATS Compatibility Score (0-100%)
-2. List of matched and missing keywords
-3. Formatting suggestions
-4. Overall improvement tips
+    const jobDescription = `Sample job description for a software engineer: 
+      Proficiency in JavaScript, React, Node.js, Git. Strong communication and teamwork skills.`;
 
-Resume Text:
+    const prompt = `You are an ATS resume evaluator. Compare the following resume text to the job description below. 
+Return:
+1. ATS compatibility percentage (0-100%)
+2. Matching keywords found in both
+3. Suggestions to improve ATS compatibility
+
+Resume:
 ${resumeText}
+
+Job Description:
+${jobDescription}
 `;
 
-  const response = await openai.createChatCompletion({
-    model: "gpt-4",
-    messages: [
-      { role: "system", content: "You are an ATS evaluator assistant." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.5,
-    max_tokens: 600
-  });
+    const response = await openai.createChatCompletion({
+      model: "gpt-4",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are an ATS resume evaluator that compares resumes to job descriptions.",
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+      temperature: 0.3,
+      max_tokens: 500,
+    });
 
-  return response.data.choices[0].message.content;
+    return response.data.choices[0].message.content;
+  } catch (err) {
+    console.error("Error analyzing resume:", err);
+    return "An error occurred while analyzing the resume.";
+  }
 }
