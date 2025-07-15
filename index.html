@@ -32,31 +32,27 @@
     <h1>Create Your Resume and Find Your Next Job</h1>
     <p>AI-powered tools to build resumes, generate cover letters, find jobs, and grow your career.</p>
 
-  <!-- Get Started Modal -->
-  <button id="getStartedModalBtn" class="signup-form-button">Get Started</button>
-    <div class="modal-content">
-      <span class="close-button" id="closeModal">&times;</span>
-      <h2>Get Started</h2>
-      <p>Use our tools to build your future.</p>
-      <a href="#tools" class="modal-cta">Explore Tools</a>
+    <!-- Get Started Button (triggers signup modal) -->
+    <button id="getStartedModalBtn" class="signup-form-button">Get Started</button>
+  </section>
+
+  <!-- Signup Popup Modal -->
+  <div id="signupPopup" class="signup-popup">
+    <div class="signup-popup-content">
+      <span class="close-signup" id="closeSignup">&times;</span>
+      <h2>Get Started Free</h2>
+      <p>Sign up to access resume tools and templates.</p>
+      <form class="signup-form" action="https://formspree.io/f/xgvygjjp" method="POST">
+        <input type="text" name="firstName" placeholder="First Name" required />
+        <input type="text" name="lastName" placeholder="Last Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="text" name="_gotcha" style="display:none" />
+        <input type="hidden" name="_next" value="thank-you.html" />
+        <button type="submit">Sign Up</button>
+      </form>
     </div>
   </div>
-  
-<div id="signupPopup" class="signup-popup">
-  <div class="signup-popup-content">
-    <span class="close-signup" id="closeSignup">&times;</span>
-    <h2>Get Started Free</h2>
-    <p>Sign up to access resume tools and templates.</p>
-    <form class="signup-form" action="https://formspree.io/f/xgvygjjp" method="POST">
-      <input type="text" name="firstName" placeholder="First Name" required />
-      <input type="text" name="lastName" placeholder="Last Name" required />
-      <input type="email" name="email" placeholder="Email Address" required />
-      <input type="text" name="_gotcha" style="display:none" />
-      <input type="hidden" name="_next" value="thank-you.html" />
-      <button type="submit">Sign Up</button>
-    </form>
-  </div>
-</div>
+
   <!-- Tools Section -->
   <section class="tools-section" id="tools">
 
@@ -116,18 +112,20 @@
 
   </section>
 
-<section class="template-gallery">
-  <h2>Resume Templates</h2>
-  <div id="templateGrid" class="template-grid"></div>
-</section>
-  <!-- Signup Form Section -->
+  <!-- Resume Templates Gallery -->
+  <section class="template-gallery">
+    <h2>Resume Templates</h2>
+    <div id="templateGrid" class="template-grid"></div>
+  </section>
+
+  <!-- Newsletter Signup -->
   <section class="signup-section">
     <form class="signup-form" action="https://formspree.io/f/xgvygjjp" method="POST">
-      <input type="text" name="firstName" placeholder="First Name" required>
-      <input type="text" name="lastName" placeholder="Last Name" required>
-      <input type="email" name="email" placeholder="Email Address" required>
-      <input type="text" name="_gotcha" style="display:none">
-      <input type="hidden" name="_next" value="thank-you.html">
+      <input type="text" name="firstName" placeholder="First Name" required />
+      <input type="text" name="lastName" placeholder="Last Name" required />
+      <input type="email" name="email" placeholder="Email Address" required />
+      <input type="text" name="_gotcha" style="display:none" />
+      <input type="hidden" name="_next" value="thank-you.html" />
       <button type="submit">Sign Up</button>
     </form>
   </section>
@@ -163,11 +161,10 @@
   </script>
   <script src="https://www.chatbase.co/embed.min.js" id="kenjiChatbot" defer></script>
 
-  <!-- Scripts -->
+  <!-- External Scripts -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script type="module" src="script.js"></script>
-
-<script src="resumeTemplates.js" defer></script>
+  <script src="resumeTemplates.js" defer></script>
 
 </body>
 </html>
