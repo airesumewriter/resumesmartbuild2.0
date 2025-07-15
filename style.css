@@ -210,3 +210,47 @@ body { font-family: 'Inter', sans-serif; background: #f9fbfd; color: #333; overf
   color: white;
   cursor: pointer;
 }
+.signup-popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+.signup-popup-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+}
+
+.signup-popup-content h2 {
+  margin-bottom: 0.5rem;
+}
+
+.signup-popup-content p {
+  margin-bottom: 1rem;
+}
+
+.signup-popup .signup-form input,
+.signup-popup .signup-form button {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.close-signup {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+}
