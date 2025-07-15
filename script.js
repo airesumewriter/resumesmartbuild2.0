@@ -32,3 +32,20 @@ document.querySelectorAll(".login-btn").forEach(btn => { btn.addEventListener("c
 
 document.getElementById("googleLoginBtn").onclick = () => { const provider = new GoogleAuthProvider(); signInWithPopup(auth, provider) .then(result => { alert("Welcome, " + result.user.displayName); loginModal.style.display = "none"; }) .catch(error => console.error("Google Login Error:", error)); };
 
+const signupPopup = document.getElementById("signupPopup");
+const getStartedBtn = document.getElementById("getStartedModalBtn");
+const closeSignup = document.getElementById("closeSignup");
+
+getStartedBtn.addEventListener("click", () => {
+  signupPopup.style.display = "flex";
+});
+
+closeSignup.addEventListener("click", () => {
+  signupPopup.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {
+  if (event.target === signupPopup) {
+    signupPopup.style.display = "none";
+  }
+});
