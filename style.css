@@ -245,6 +245,7 @@ body {
   padding: 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .template-card:hover {
@@ -276,7 +277,12 @@ body {
   font-size: 0.75rem;
 }
 
-.template-actions button {
+.template-actions {
+  margin-top: 10px;
+}
+
+.template-actions button,
+.template-actions a.download-btn {
   padding: 10px 18px;
   background: #0057d9;
   color: white;
@@ -284,6 +290,23 @@ body {
   border-radius: 8px;
   cursor: pointer;
   margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.template-actions button:hover,
+.template-actions a.download-btn:hover {
+  background-color: #0046b3;
+  transform: scale(1.03);
+}
+
+.template-actions .locked {
+  background: #999;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.8;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
 }
 
 /* ====== Articles Section ====== */
@@ -310,6 +333,12 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.article-card:hover {
+  background-color: #f4f8ff;
+  transform: translateY(-3px);
 }
 
 /* ====== Responsive ====== */
